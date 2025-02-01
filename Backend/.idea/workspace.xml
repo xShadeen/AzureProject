@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="c539bd85-4f64-4c6b-b2fb-e3585a43033f" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.github/workflows/main_springboot-zti-project.yml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/zti/backend/BackendApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/backend/BackendApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/zti/backend/client/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/backend/client/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/zti/backend/client/ClientController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/backend/client/ClientController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/zti/backend/client/ClientRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/backend/client/ClientRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/zti/backend/client/ClientService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/backend/client/ClientService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/zti/backend/cors/CorsConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/zti/backend/courses/Course.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/backend/courses/Course.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/zti/backend/courses/CourseController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/backend/courses/CourseController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/zti/backend/courses/CourseRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/backend/courses/CourseRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/zti/backend/courses/CourseService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/backend/courses/CourseService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/zti/backend/saved_courses/SavedCourses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/backend/saved_courses/SavedCourses.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/zti/backend/saved_courses/SavedCoursesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/backend/saved_courses/SavedCoursesController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/zti/backend/saved_courses/SavedCoursesRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/backend/saved_courses/SavedCoursesRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/zti/backend/saved_courses/SavedCoursesService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/backend/saved_courses/SavedCoursesService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/zti/backend/words/Words.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/backend/words/Words.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/zti/backend/words/WordsController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/backend/words/WordsController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/zti/backend/words/WordsRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/backend/words/WordsRepository.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/zti/backend/words/WordsService.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/project/backend/words/WordsService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/zti/backend/BackendApplicationTests.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/project/backend/BackendApplicationTests.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Interface" />
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHomeTypeForPersistence" value="WRAPPER" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
+  <component name="ProjectId" id="2gYE9C70WplUk6tZAFEiqBKqPe1" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.BackendApplication.executor&quot;: &quot;Run&quot;,
+    &quot;Application.project.backend.BackendApplication.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BackendApplicationTests.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.BackendApplicationTests.testAddClient_Conflict.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;
+  }
+}</component>
+  <component name="RunManager" selected="Application.project.backend.BackendApplication">
+    <configuration name="project.backend.BackendApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="project.backend.BackendApplication" />
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="zti.backend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <extension name="net.ashald.envfile">
+        <option name="IS_ENABLED" value="false" />
+        <option name="IS_SUBST" value="false" />
+        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
+        <option name="IS_IGNORE_MISSING_FILES" value="false" />
+        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
+        <ENTRIES>
+          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
+        </ENTRIES>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BackendApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="project.backend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="project.backend" />
+      <option name="MAIN_CLASS_NAME" value="project.backend.BackendApplicationTests" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="BackendApplicationTests.testAddClient_Conflict" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="project.backend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="project.backend" />
+      <option name="MAIN_CLASS_NAME" value="project.backend.BackendApplicationTests" />
+      <option name="METHOD_NAME" value="testAddClient_Conflict" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.project.backend.BackendApplication" />
+        <item itemvalue="JUnit.BackendApplicationTests.testAddClient_Conflict" />
+        <item itemvalue="JUnit.BackendApplicationTests" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="c539bd85-4f64-4c6b-b2fb-e3585a43033f" name="Changes" comment="" />
+      <created>1715865958233</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1715865958233</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="org.springframework.beans.factory.BeanCreationException" package="org.springframework.beans.factory" />
+          <option name="timeStamp" value="1" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>
