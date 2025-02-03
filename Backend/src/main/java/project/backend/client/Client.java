@@ -27,6 +27,9 @@ public class Client {
     private String login;
     private String password;
 
+    @Enumerated(EnumType.STRING)  // Używamy typu enum Role
+    private Role role;
+
     @JsonManagedReference("client_coursesReference")
     @OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
     private List<Course> courses = new ArrayList<>();
@@ -36,17 +39,20 @@ public class Client {
     private List<SavedCourses> savedCourses = new ArrayList<>();
 
     public Client() {
+        this.role = Role.USER;  // Domyślnie każdemu nowemu użytkownikowi przypisujemy rolę USER
     }
 
     public Client(Long id, String login, String password) {
         this.id = id;
         this.login = login;
         this.password = password;
+        this.role = Role.USER;  // Możesz również ustawić domyślną rolę tutaj
     }
 
     public Client(String login, String password) {
         this.login = login;
         this.password = password;
+        this.role = Role.USER;  // Domyślna rola dla nowych użytkowników
     }
 
     public Long getId() {
@@ -81,12 +87,21 @@ public class Client {
         this.savedCourses = savedCourses;
     }
 
+    public Role getRole() {
+        return role;  // Getter dla roli
+    }
+
+    public void setRole(Role role) {
+        this.role = role;  // Setter dla roli
+    }
+
     @Override
     public String toString() {
         return "Client{" +
                 "id=" + id +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
+                ", role=" + role +  // Dodajemy rolę do toString
                 '}';
     }
 }

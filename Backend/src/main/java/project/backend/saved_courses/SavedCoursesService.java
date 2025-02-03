@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.NoSuchElementException;
 
 @Service
 public class SavedCoursesService {
@@ -17,6 +18,10 @@ public class SavedCoursesService {
 
     public List<SavedCourses> getSavedCoursesByClientId(Long clientId) {
         return savedCoursesRepository.findByClient_Id(clientId);
+    }
+    public SavedCourses getSavedCourseByCourseId(Long courseId) {
+        return (SavedCourses) savedCoursesRepository.findByCourseId(courseId)
+                .orElseThrow(() -> new NoSuchElementException("Saved course not found with courseId: " + courseId));
     }
 
     public SavedCourses save(SavedCourses savedCourses) {

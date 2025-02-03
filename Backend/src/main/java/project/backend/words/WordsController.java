@@ -2,6 +2,10 @@ package project.backend.words;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.oauth2.jwt.Jwt;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 import project.backend.courses.Course;
 import project.backend.courses.CourseService;
@@ -26,17 +30,28 @@ public class WordsController {
         return wordsService.getAllWordsByCourseId(courseId);
     }
 
+    @PreAuthorize("hasRole('USER')")
     @PostMapping("/add/{courseId}")
-    public ResponseEntity<Words> addWord(@PathVariable Long courseId, @RequestBody Words word) {
+    public ResponseEntity<Words> addWord(@PathVariable Long courseId, @RequestBody Words word, Authentication authentication) {
+        JwtAuthenticationToken jwtAuthenticationToken = (JwtAuthenticationToken) authentication;
+        Jwt jwt = jwtAuthenticationToken.getToken();
+        Long authenticatedClientId = jwt.getClaim("clientId");
+
         Course course = courseService.getCourseById(courseId);
         word.setCourse(course);
         wordsService.saveWord(word);
         return ResponseEntity.ok(word);
     }
+
+    @PreAuthorize("hasRole('USER')")
     @DeleteMapping("/delete/{wordId}")
-    public ResponseEntity<?> deleteWord(@PathVariable Long wordId) {
+    public ResponseEntity<?> deleteWord(@PathVariable Long wordId, Authentication authentication) {
+        JwtAuthenticationToken jwtAuthenticationToken = (JwtAuthenticationToken) authentication;
+        Jwt jwt = jwtAuthenticationToken.getToken();
+        Long authenticatedClientId = jwt.getClaim("clientId");
+
         wordsService.deleteWord(wordId);
         return ResponseEntity.ok().build();
     }
-
 }
+

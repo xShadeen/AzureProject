@@ -31,7 +31,6 @@ public class ClientService {
         return client.orElse(null);
     }
     public Client getClientById(Long id) {
-        Optional<Client> client = clientRepository.findById(id);
-        return client.orElse(null);
+        return clientRepository.findById(id).orElse(null);
     }
 }
