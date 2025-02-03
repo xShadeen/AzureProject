@@ -27,7 +27,7 @@ const AppContent = () => {
                     <Route path="/login" element={<Login />} />
                     <Route path="/register" element={<Register />} />
                     <Route path="/user/:clientId" element={<UserPage />} />
-                    <Route path="/admin" element={<AdminPanel />} />
+                    <Route path="/admin/:clientId" element={<AdminPanel />} />
                     <Route path="/user/:clientId/courseform" element={<CourseForm />} />
                     <Route path="/CourseHomePage/:clientId/:courseId" element={<CourseHomePage />} />
                     <Route path="/Course/OwnCourses/:clientId" element={<OwnCourses />} />

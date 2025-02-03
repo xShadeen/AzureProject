@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
-import { getIdByLogin } from '../../hooks/hooks';
+import { getIdByLogin } from '../../hooks/hooks'; // Adjusted to include getIdByLogin function
 import Navbar from "../../components/Navbar";
 
 const Login = () => {
@@ -15,22 +15,28 @@ const Login = () => {
 
     const handleSignUp = async (event) => {
         event.preventDefault();
-
+    
         if (login !== '' && password !== '') {
             try {
-                const loginExists = await getIdByLogin(login);
-                if (loginExists && loginExists.password === password) {
-                    setClientId(loginExists.id);
-                    setErrorMessage('');
-
-                    window.location.href = `/user/${loginExists.id}`;
-
-                } else {
-                    setErrorMessage('Incorrect login or password.');
+                // Próba logowania
+                const response = await getIdByLogin(login, password); // Oczekujemy obiektu z tokenem, clientId i role
+    
+                if (response && response.token) {
+                    // Zapisujemy token i clientId w localStorage
+                    localStorage.setItem('token', response.token);
+                    localStorage.setItem('clientId', response.clientId);
+                    localStorage.setItem('role', response.role);  // Zapisujemy rolę
+                    
+                    // Przekierowanie na stronę użytkownika lub admina, w zależności od roli
+                    if (response.role === 'ADMIN') {
+                        window.location.href = `/admin/${response.clientId}`;  // Przekierowanie na stronę admina
+                    } else {
+                        window.location.href = `/user/${response.clientId}`;  // Przekierowanie na stronę użytkownika
+                    }
                 }
+                
             } catch (error) {
-                console.error('Error during sign up:', error);
-                setErrorMessage('An error occurred during login. Please try again later.');
+                setErrorMessage('Incorrect login or password.');
             }
         } else {
             setErrorMessage('Both fields are required.');
@@ -68,7 +74,7 @@ const Login = () => {
                             {errorMessage}
                         </p>
                     )}
-                    <button type="submit">Sign-up</button>
+                    <button type="submit">Login</button>
                 </form>
             </div>
         </div>

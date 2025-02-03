@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import UserNavbar from "../../components/UserNavbar";
-import {Link, useParams} from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { addCourse } from "../../hooks/hooks";
 
 const CourseForm = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [language, setLanguage] = useState('English'); // State to store the selected language
+    const [language, setLanguage] = useState('English');
     const { clientId } = useParams();
     const maxCharacters = 300;
 
@@ -40,20 +40,21 @@ const CourseForm = () => {
         }
 
         const data = {
-            // clientId: clientId,
             title: title,
             description: description,
             language: language
-        }
-        console.log(data)
+        };
+
         try {
             const res = await addCourse(data, clientId);
-            console.log('CourseHomePage added successfully:', res);
+            console.log('Course added successfully:', res);
+
+            // Przekierowanie po dodaniu kursu
+            window.location.href = `/Course/OwnCourses/${clientId}`;  // Zmieniamy na przekierowanie w JS
         } catch (error) {
-            console.error('Err', error);
+            console.error('Error:', error);
         }
     };
-
 
     return (
         <div>
@@ -88,9 +89,7 @@ const CourseForm = () => {
                             <option value="Spanish">Spanish</option>
                         </select>
                     </label>
-                    <Link to={`/Course/OwnCourses/${clientId}`}>
-                        <button type="submit">Add Course</button>
-                    </Link>
+                    <button type="submit">Add Course</button>
                 </form>
             </div>
         </div>

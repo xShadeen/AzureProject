@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
 import UserNavbar from "../../components/UserNavbar";
 import { Link, useParams } from "react-router-dom";
-import {getCourseById, getSavedCoursesByClientId, saveCourse} from "../../hooks/hooks";
+import { getCourseById, getSavedCoursesByClientId, saveCourse } from "../../hooks/hooks";
 import { getImageByLanguage } from "../../hooks/helpers";
 import Button from "@mui/material/Button";
 import { Container, Typography, Card, CardContent, CardActions, Grid } from '@mui/material';
+
 
 const CourseHomePage = () => {
     const [course, setCourse] = useState({});
@@ -16,11 +17,8 @@ const CourseHomePage = () => {
             try {
                 const data = await getCourseById(courseId);
                 const savedCourses = await getSavedCoursesByClientId(clientId);
-                for (let savedCourse of savedCourses) {
-                    if (String(savedCourse.courseId) === String(courseId)) {
-                        setIsSaved(true);
-                    }
-                }
+                const isCourseSaved = savedCourses.some(savedCourse => String(savedCourse.courseId) === String(courseId));
+                setIsSaved(isCourseSaved);
                 setCourse(data);
             } catch (error) {
                 console.error('Error during fetching course:', error);
@@ -29,16 +27,12 @@ const CourseHomePage = () => {
         fetchData();
     }, [courseId, clientId]);
 
-    useEffect(() => {
-        console.log(isSaved);
-    }, [isSaved]);
-
     const handleSubmit = async (event) => {
         event.preventDefault();
 
         try {
-            const res = await saveCourse(clientId, courseId);
-            console.log("Pomyślnie rozpoczęto kurs");
+            await saveCourse(clientId, courseId);
+            console.log("Course started successfully");
             window.location.href = `/Course/${clientId}/${courseId}`;
         } catch (error) {
             console.error('Error during saving course:', error);
@@ -67,16 +61,17 @@ const CourseHomePage = () => {
                     </CardContent>
                     <CardActions>
                         <Grid container justifyContent="flex-end" sx={{ pt: 0 }}>
-                            {isSaved ?
+                            {isSaved ? (
                                 <Button
-                                variant="contained"
-                                color="primary"
-                                sx={{ mr: 4 }}
-                                component = {Link}
-                                to={`/Course/${clientId}/${courseId}`}
-                            >
-                                Continue Course
-                            </Button> :
+                                    variant="contained"
+                                    color="primary"
+                                    sx={{ mr: 4 }}
+                                    component={Link}
+                                    to={`/Course/${clientId}/${courseId}`}
+                                >
+                                    Continue Course
+                                </Button>
+                            ) : (
                                 <Button
                                     variant="contained"
                                     color="primary"
@@ -84,7 +79,8 @@ const CourseHomePage = () => {
                                     onClick={handleSubmit}
                                 >
                                     Start Course
-                                </Button>}
+                                </Button>
+                            )}
                         </Grid>
                     </CardActions>
                 </Card>

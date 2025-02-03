@@ -1,15 +1,23 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useParams, useNavigate } from 'react-router-dom'; // Import useNavigate instead of useHistory
 import Button from '@mui/material/Button';
 import './Navbar.css';
-import { useParams } from 'react-router-dom';
 
 const Navbar = () => {
     let { clientId } = useParams();
+    const navigate = useNavigate(); // Use useNavigate for navigation
 
     if (clientId === undefined) {
         clientId = 3;
     }
+
+    const handleLogout = () => {
+        // Usuwamy token z localStorage
+        localStorage.removeItem('token');
+        
+        // Przekierowujemy użytkownika na stronę logowania
+        navigate('/');  // Przekierowanie na stronę logowania
+    };
 
     return (
         <div className="nav">
@@ -17,8 +25,8 @@ const Navbar = () => {
                 color="inherit"
                 size="large"
                 variant="text"
-                component={Link} // Moved inside Button component
-                to={`/${clientId}`} // Moved inside Button component
+                component={Link}
+                to={`/${clientId}`}
             >
                 SuperCourses
             </Button>
@@ -28,18 +36,17 @@ const Navbar = () => {
                     color="inherit"
                     size="large"
                     variant="text"
-                    component={Link} // Moved inside Button component
-                    to={`/Course/OwnCourses/${clientId}`} // Moved inside Button component
+                    component={Link}
+                    to={`/Course/OwnCourses/${clientId}`}
                 >
                     Own Courses
                 </Button>
                 <li> </li>
                 <li className="nav-signup">
                     <Button
-                        component={Link}
-                        to="/"
                         variant="contained"
                         color="success"
+                        onClick={handleLogout} // Wywołanie funkcji przy kliknięciu
                     >
                         Logout
                     </Button>
@@ -53,7 +60,6 @@ const Navbar = () => {
                     >
                         Create Course
                     </Button>
-
                 </li>
             </ul>
         </div>

@@ -1,33 +1,57 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from "react-router-dom";
-import {getCourses, getCoursesByClientId} from "../hooks/hooks";
-import British from "../Photos/Brithish.jpg";
-import Spanish from "../Photos/Spanish.jpg";
-import Polish from "../Photos/Polish.jpg";
-import UserNavbar from "./UserNavbar";
-import Navbar from "./Navbar";
+import { getCourses, getClientById, deleteCourse } from "../hooks/hooks"; // Importujemy deleteCourse
+import { getImageByLanguage } from "../hooks/helpers";
 import Card from "@mui/material/Card";
 import { CardActionArea } from "@mui/material";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
-import { getImageByLanguage } from "../hooks/helpers";
+import UserNavbar from "./UserNavbar";
+import Navbar from "./Navbar";
 
 const ShowAllCourses = () => {
     const [coursesList, setCoursesList] = useState([]);
+    const [error, setError] = useState(null);
+    const [userRole, setUserRole] = useState(null);
     const { clientId } = useParams();
 
     useEffect(() => {
         const fetchData = async () => {
-            const data = await getCourses();
-            setCoursesList(data);
-            console.log(data);
+            try {
+                const data = await getCourses();
+                setCoursesList(data);
+            } catch (err) {
+                setError('Nie udało się załadować kursów');
+                console.error(err);
+            }
         };
-        fetchData();
-    }, []);
 
-// Function to chunk the courses list into arrays of 5 courses
+        const fetchUserRole = async () => {
+            try {
+                if (clientId) {
+                    const userData = await getClientById(clientId);
+                    setUserRole(userData.role);
+                }
+            } catch (err) {
+                console.error("Błąd podczas pobierania roli użytkownika", err);
+            }
+        };
+
+        fetchData();
+        fetchUserRole();
+    }, [clientId]);
+
+    const handleDeleteCourse = async (courseId) => {
+        try {
+            await deleteCourse(courseId);
+            setCoursesList(prevCourses => prevCourses.filter(course => course.id !== courseId));
+        } catch (error) {
+            console.error("Błąd podczas usuwania kursu:", error);
+        }
+    };
+
     const chunkCourses = (array, size) => {
         const chunkedArray = [];
         for (let i = 0; i < array.length; i += size) {
@@ -36,8 +60,6 @@ const ShowAllCourses = () => {
         return chunkedArray;
     };
 
-
-    // Calculate proportional height based on width for maintaining 4:3 aspect ratio
     const calculateProportionalHeight = (width) => {
         return (width / 345) * 140;
     };
@@ -46,11 +68,12 @@ const ShowAllCourses = () => {
         <div>
             {clientId ? <UserNavbar /> : <Navbar />}
             <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+                {error && <Typography color="error">{error}</Typography>}
                 {chunkCourses(coursesList, 3).map((row, index) => (
                     <div key={index} style={{ display: 'flex', justifyContent: 'space-between', padding: '20px' }}>
                         {row.map(course => (
-                            <Link key={course.id} to={clientId ? `/CourseHomePage/${clientId}/${course.id}` : "/Login"}>
-                                <Card sx={{ width: 250, height: 300, margin: '10px' }}>
+                            <Card key={course.id} sx={{ width: 250, height: 300, margin: '10px' }}>
+                                <Link to={clientId ? `/CourseHomePage/${clientId}/${course.id}` : "/Login"} style={{ textDecoration: 'none', color: 'inherit' }}>
                                     <CardActionArea>
                                         <CardMedia
                                             component="img"
@@ -67,14 +90,18 @@ const ShowAllCourses = () => {
                                             </Typography>
                                         </CardContent>
                                     </CardActionArea>
-                                    {clientId == 3 && (
-                                        <>
-                                            <Button variant="contained">Edit</Button>
-                                            <Button variant="contained">Delete</Button>
-                                        </>
-                                    )}
-                                </Card>
-                            </Link>
+                                </Link>
+                                {userRole === "ADMIN" && (
+                                    <div style={{ display: 'flex', justifyContent: 'space-around', padding: '10px' }}>
+                                         <Button variant="contained" color="primary" component={Link} to={`/EditCourse/${clientId}/${course.id}`}>
+                                            Edit
+                                        </Button>
+                                        <Button variant="contained" color="secondary" onClick={() => handleDeleteCourse(course.id)}>
+                                            Delete
+                                        </Button>
+                                    </div>
+                                )}
+                            </Card>
                         ))}
                     </div>
                 ))}

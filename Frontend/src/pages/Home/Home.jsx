@@ -1,50 +1,27 @@
 import React, { useEffect, useState } from 'react';
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import { CardActionArea } from '@mui/material';
-import British from '../../Photos/Brithish.jpg';
-import Polish from '../../Photos/Polish.jpg';
-import Spanish from '../../Photos/Spanish.jpg';
-import Navbar from "../../components/Navbar";
-import UserNavbar from "../../components/UserNavbar";
-import { getCoursesByClientId } from "../../hooks/hooks";
-import {Link, useParams} from "react-router-dom";
-import ShowAllCourses from "../../components/ShowAllCourses";
-
+import { useParams } from "react-router-dom";
+import { getCourses, getCoursesByClientId } from "../../hooks/hooks";
+import { getImageByLanguage } from "../../hooks/helpers"; // Importujemy z helpers
+import ShowAllCourses from "../../components/ShowAllCourses"; // Importujemy ShowAllCourses
 
 const Home = () => {
     const [coursesList, setCoursesList] = useState([]);
-    const { clientId } = useParams();
+    const { clientId } = useParams(); // Pobieramy clientId z URL
 
     useEffect(() => {
         const fetchData = async () => {
-            const data = await getCoursesByClientId(3);
+            const data = await getCourses(); // Używamy clientId z URL
             setCoursesList(data);
             console.log(data);
         };
         fetchData();
-    }, []);
-
-    const getImageByLanguage = (language) => {
-        switch (language) {
-            case 'English':
-                return British;
-            case 'Spanish':
-                return Spanish;
-            case 'Polish':
-                return Polish;
-            default:
-                return;
-        }
-    }
+    }, [clientId]); // Dodajemy clientId do zależności useEffect
 
     return (
         <div>
-            <ShowAllCourses/>
+            <ShowAllCourses /> {/* Wywołujemy ShowAllCourses */}
         </div>
     );
-}
+};
 
 export default Home;

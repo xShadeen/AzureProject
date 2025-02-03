@@ -12,11 +12,15 @@ const Course = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const wordsData = await getWordsByCourseId(courseId);
-            setWords(wordsData);
+            try {
+                const wordsData = await getWordsByCourseId(courseId);
+                setWords(wordsData);
+            } catch (error) {
+                console.error('Error fetching words:', error);
+            }
         };
         fetchData();
-    }, [clientId, courseId]);
+    }, [courseId]);
 
     const handleNextWord = () => {
         setCurrentIndex(currentIndex + 1);
@@ -45,7 +49,7 @@ const Course = () => {
                     <div style={{ alignSelf: "flex-start", textAlign: "left" }}>
                         <h2 style={{ fontSize: "2em", fontWeight: "bold", marginBottom: "0.5em", textAlign: "left" }}>{words[currentIndex].word}</h2>
                         <p style={{ fontStyle: "italic", fontSize: "1.2em", marginBottom: "0.5em", textAlign: "left" }}>{words[currentIndex].description}</p>
-                        {showTranslation && <p style={{ fontSize: "1.2em", marginTop:"300px", textAlign: "left" }}>{words[currentIndex].translation}</p>}
+                        {showTranslation && <p style={{ fontSize: "1.2em", marginTop: "300px", textAlign: "left" }}>{words[currentIndex].translation}</p>}
                     </div>
                 )}
             </div>
