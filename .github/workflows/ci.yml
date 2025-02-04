@@ -34,7 +34,7 @@ jobs:
 
     - name: Upload test results
       if: always()  # Zawsze po zakończeniu kroku
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4  # Zaktualizowana wersja
       with:
         name: test-results
         path: target/surefire-reports  # Ścieżka do raportów z testów
