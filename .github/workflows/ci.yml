@@ -1,0 +1,40 @@
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main  # uruchamia workflow dla pushów do gałęzi main
+  pull_request:
+    branches:
+      - main  # uruchamia workflow dla pull requestów do gałęzi main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Wybieramy system operacyjny Ubuntu jako runner
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3  # Pobieramy kod źródłowy repozytorium
+
+    - name: Set up JDK 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'  # Ustawiamy JDK 17
+
+    - name: Cache Maven dependencies
+      uses: actions/cache@v3
+      with:
+        path: ~/.m2/repository  # Cache Maven local repository
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}  # Klucz cache
+        restore-keys: |
+          ${{ runner.os }}-maven-
+
+    - name: Build and Test with Maven
+      run: mvn clean install  # Kompiluje projekt i uruchamia testy
+
+    - name: Upload test results
+      if: always()  # Zawsze po zakończeniu kroku
+      uses: actions/upload-artifact@v3
+      with:
+        name: test-results
+        path: target/surefire-reports  # Ścieżka do raportów z testów
