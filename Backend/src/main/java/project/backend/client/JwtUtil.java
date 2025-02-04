@@ -16,12 +16,12 @@ public class JwtUtil {
 
     public String generateToken(String username, Long clientId, Role role) {
         Date now = new Date();
-        Date expiryDate = new Date(now.getTime() + 3600000); // Token ważny przez godzinę
+        Date expiryDate = new Date(now.getTime() + 3600000);
         System.out.println("Generated token with role: " + role.name());
         return Jwts.builder()
                 .setSubject(username)
                 .claim("clientId", clientId)
-                .claim("role", role.name()) // Dodajemy rolę do claims
+                .claim("role", role.name())
                 .setIssuedAt(now)
                 .setExpiration(expiryDate)
                 .signWith(getSigningKey(), SignatureAlgorithm.HS256)
