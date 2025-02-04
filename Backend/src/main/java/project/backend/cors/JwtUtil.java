@@ -1,18 +1,32 @@
-package project.backend.client;
+package project.backend.cors;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.stereotype.Component;
+import project.backend.client.Role;
 
+import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
-import javax.crypto.spec.SecretKeySpec;
-import java.util.Base64;
 import java.util.Date;
 
 @Component
 public class JwtUtil {
 
-    private final String SECRET_KEY = "Jd7b5gX9P6Ltqu9Z59h7m88Uv7fK9Vf3Dd8K67k4D2g=";
+    private final SecretKey SECRET_KEY;
+
+    public JwtUtil() {
+        this.SECRET_KEY = generateSecretKey();
+    }
+
+    private SecretKey generateSecretKey() {
+        try {
+            KeyGenerator keyGen = KeyGenerator.getInstance("HmacSHA256");
+            keyGen.init(256);
+            return keyGen.generateKey();
+        } catch (Exception e) {
+            throw new RuntimeException("Error generating secret key", e);
+        }
+    }
 
     public String generateToken(String username, Long clientId, Role role) {
         Date now = new Date();
@@ -24,28 +38,23 @@ public class JwtUtil {
                 .claim("role", role.name())
                 .setIssuedAt(now)
                 .setExpiration(expiryDate)
-                .signWith(getSigningKey(), SignatureAlgorithm.HS256)
+                .signWith(SECRET_KEY, SignatureAlgorithm.HS256)
                 .compact();
     }
 
-
-
-
     public boolean validateToken(String token) {
         try {
-            Jwts.parserBuilder().setSigningKey(getSigningKey()).build().parseClaimsJws(token);
+            Jwts.parserBuilder().setSigningKey(SECRET_KEY).build().parseClaimsJws(token);
             return true;
         } catch (Exception e) {
             return false;
         }
     }
 
-    // Metoda zwracająca klucz podpisu
     public SecretKey getSigningKey() {
-        if (SECRET_KEY == null || SECRET_KEY.isEmpty()) {
+        if (SECRET_KEY == null) {
             throw new IllegalStateException("JWT secret key is not set.");
         }
-        byte[] decodedKey = Base64.getDecoder().decode(SECRET_KEY);
-        return new SecretKeySpec(decodedKey, 0, decodedKey.length, "HmacSHA256");
+        return SECRET_KEY;
     }
 }

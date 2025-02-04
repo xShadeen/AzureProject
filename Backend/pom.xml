@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
 		<version>3.2.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
 	<groupId>zti</groupId>
 	<artifactId>backend</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>backend</name>
 	<description>Backend for zti project</description>
+
 	<properties>
 		<java.version>17</java.version>
-		<spring-boot.version>3.0.0</spring-boot.version> <!-- Upewnij się, że masz tę wersję -->
+		<spring-boot.version>3.0.0</spring-boot.version>
 	</properties>
 
 	<dependencies>
@@ -98,17 +101,21 @@
 			<artifactId>spring-boot-starter-webflux</artifactId>
 			<version>3.4.2</version>
 		</dependency>
-
 	</dependencies>
-
 
 	<build>
 		<plugins>
+			<!-- Surefire Plugin for unit tests -->
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>3.5.2</version>
+				<configuration>
+					<includes>
+						<include>**/*Test.java</include>
+					</includes>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
-
 </project>

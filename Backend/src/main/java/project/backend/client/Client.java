@@ -55,6 +55,9 @@ public class Client {
         this.role = Role.USER;
     }
 
+    public Client(long l, String user1, String pass, Role role) {
+    }
+
     public Long getId() {
         return id;
     }

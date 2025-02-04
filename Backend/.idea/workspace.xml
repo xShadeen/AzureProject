@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c539bd85-4f64-4c6b-b2fb-e3585a43033f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Dokumentacja.pdf" beforeDir="false" />
-    </list>
+    <list default="true" id="c539bd85-4f64-4c6b-b2fb-e3585a43033f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -47,8 +45,21 @@
     "Application.project.backend.BackendApplication.executor": "Run",
     "JUnit.BackendApplicationTests.executor": "Run",
     "JUnit.BackendApplicationTests.testAddClient_Conflict.executor": "Run",
+    "JUnit.ClientControllerTest.executor": "Run",
+    "JUnit.ClientControllerTest.shouldReturnAllClients.executor": "Run",
+    "JUnit.ClientControllerTest.testGetClients.executor": "Run",
+    "JUnit.ClientControllerTest.testRegisterClient_Conflict.executor": "Run",
+    "JUnit.ClientControllerTest.testRegisterClient_Success.executor": "Run",
+    "JUnit.ClientServiceTest.executor": "Run",
+    "JUnit.CourseServiceTest.executor": "Run",
+    "JUnit.SavedCoursesControllerTest.testDeleteSavedCourse_AccessDenied.executor": "Run",
+    "JUnit.SavedCoursesControllerTest.testDeleteSavedCourse_Success.executor": "Run",
+    "JUnit.SavedCoursesControllerTest.testGetSavedCoursesByClientId_Success.executor": "Run",
+    "JUnit.SavedCoursesServiceTest.executor": "Run",
+    "JUnit.SavedCoursesServiceTest.testGetSavedCoursesByClientId.executor": "Run",
+    "JUnit.WordsServiceTest.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "Merging main",
+    "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
@@ -56,31 +67,9 @@
     "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings"
   }
 }]]></component>
-  <component name="RunManager" selected="Application.project.backend.BackendApplication">
-    <configuration name="project.backend.BackendApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="Application.BackendApplication">
+    <configuration name="BackendApplication" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="project.backend.BackendApplication" />
-      <module name="backend" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="zti.backend.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <extension name="net.ashald.envfile">
-        <option name="IS_ENABLED" value="false" />
-        <option name="IS_SUBST" value="false" />
-        <option name="IS_PATH_MACRO_SUPPORTED" value="false" />
-        <option name="IS_IGNORE_MISSING_FILES" value="false" />
-        <option name="IS_ENABLE_EXPERIMENTAL_INTEGRATIONS" value="false" />
-        <ENTRIES>
-          <ENTRY IS_ENABLED="true" PARSER="runconfig" IS_EXECUTABLE="false" />
-        </ENTRIES>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="BackendApplicationTests" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="backend" />
       <extension name="coverage">
         <pattern>
@@ -88,34 +77,79 @@
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="project.backend" />
-      <option name="MAIN_CLASS_NAME" value="project.backend.BackendApplicationTests" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SavedCoursesControllerTest.testDeleteSavedCourse_AccessDenied" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="project.backend.saved_courses_service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="project.backend.saved_courses_service" />
+      <option name="MAIN_CLASS_NAME" value="project.backend.saved_courses_service.SavedCoursesControllerTest" />
+      <option name="METHOD_NAME" value="testDeleteSavedCourse_AccessDenied" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SavedCoursesServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="project.backend.saved_courses.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="project.backend.saved_courses" />
+      <option name="MAIN_CLASS_NAME" value="project.backend.saved_courses.SavedCoursesServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="BackendApplicationTests.testAddClient_Conflict" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="SavedCoursesServiceTest.testGetSavedCoursesByClientId" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="backend" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="project.backend.*" />
+          <option name="PATTERN" value="project.backend.saved_courses.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="project.backend" />
-      <option name="MAIN_CLASS_NAME" value="project.backend.BackendApplicationTests" />
-      <option name="METHOD_NAME" value="testAddClient_Conflict" />
+      <option name="PACKAGE_NAME" value="project.backend.saved_courses" />
+      <option name="MAIN_CLASS_NAME" value="project.backend.saved_courses.SavedCoursesServiceTest" />
+      <option name="METHOD_NAME" value="testGetSavedCoursesByClientId" />
       <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="WordsServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="project.backend.words_service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="project.backend.words_service" />
+      <option name="MAIN_CLASS_NAME" value="project.backend.words_service.WordsServiceTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.project.backend.BackendApplication" />
-        <item itemvalue="JUnit.BackendApplicationTests.testAddClient_Conflict" />
-        <item itemvalue="JUnit.BackendApplicationTests" />
+        <item itemvalue="Application.BackendApplication" />
+        <item itemvalue="JUnit.WordsServiceTest" />
+        <item itemvalue="JUnit.SavedCoursesServiceTest" />
+        <item itemvalue="JUnit.SavedCoursesServiceTest.testGetSavedCoursesByClientId" />
+        <item itemvalue="JUnit.SavedCoursesControllerTest.testDeleteSavedCourse_AccessDenied" />
       </list>
     </recent_temporary>
   </component>
