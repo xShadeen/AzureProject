@@ -22,27 +22,24 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
 
-    - name: List contents of the root directory
-      run: ls -al  # List contents of the root directory
-
-    - name: List contents of the backend directory
-      run: ls -al AzureProject/backend  # This should now point to the correct location of 'backend'
-
     - name: Cache Maven dependencies
       uses: actions/cache@v3
       with:
         path: ~/.m2/repository
-        key: ${{ runner.os }}-maven-${{ hashFiles('**/AzureProject/backend/pom.xml') }}
+        key: ${{ runner.os }}-maven-${{ hashFiles('**/backend/pom.xml') }}  # Cache Maven dependencies using the correct path to pom.xml
         restore-keys: |
           ${{ runner.os }}-maven-
 
+    - name: List contents of the backend directory (for debugging)
+      run: ls -al ./Backend  # List the contents of the 'backend' directory
+
     - name: Build and Test with Maven
       run: mvn clean install
-      working-directory: ./AzureProject/backend  # Update the path to match the correct folder
+      working-directory: ./Backend  # Specify 'backend' as the working directory for Maven
 
     - name: Upload test results
       if: always()
       uses: actions/upload-artifact@v4
       with:
         name: test-results
-        path: AzureProject/backend/target/surefire-reports  # Correct path for test results
+        path: ./Backend/target/surefire-reports  # Path to the test results in 'backend'
