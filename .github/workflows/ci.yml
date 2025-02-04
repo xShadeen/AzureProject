@@ -20,7 +20,7 @@ jobs:
       uses: actions/setup-java@v3
       with:
         java-version: '17'  # Ustawiamy JDK 17
-        distribution: 'adoptopenjdk'  # Określamy dystrybucję JDK
+        distribution: 'temurin'  # Zmieniamy dystrybucję na temurin
 
     - name: Cache Maven dependencies
       uses: actions/cache@v3
