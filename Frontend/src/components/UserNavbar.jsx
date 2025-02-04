@@ -12,11 +12,9 @@ const Navbar = () => {
     }
 
     const handleLogout = () => {
-        // Usuwamy token z localStorage
         localStorage.removeItem('token');
         
-        // Przekierowujemy użytkownika na stronę logowania
-        navigate('/');  // Przekierowanie na stronę logowania
+        navigate('/'); 
     };
 
     return (

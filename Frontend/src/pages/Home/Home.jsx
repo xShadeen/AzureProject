@@ -1,25 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from "react-router-dom";
 import { getCourses, getCoursesByClientId } from "../../hooks/hooks";
-import { getImageByLanguage } from "../../hooks/helpers"; // Importujemy z helpers
-import ShowAllCourses from "../../components/ShowAllCourses"; // Importujemy ShowAllCourses
+import { getImageByLanguage } from "../../hooks/helpers";
+import ShowAllCourses from "../../components/ShowAllCourses";
 
 const Home = () => {
     const [coursesList, setCoursesList] = useState([]);
-    const { clientId } = useParams(); // Pobieramy clientId z URL
+    const { clientId } = useParams();
 
     useEffect(() => {
         const fetchData = async () => {
-            const data = await getCourses(); // Używamy clientId z URL
+            const data = await getCourses();
             setCoursesList(data);
             console.log(data);
         };
         fetchData();
-    }, [clientId]); // Dodajemy clientId do zależności useEffect
+    }, [clientId]);
 
     return (
         <div>
-            <ShowAllCourses /> {/* Wywołujemy ShowAllCourses */}
+            <ShowAllCourses />
         </div>
     );
 };

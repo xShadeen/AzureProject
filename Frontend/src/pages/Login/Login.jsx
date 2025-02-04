@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import Button from '@mui/material/Button';
-import { getIdByLogin } from '../../hooks/hooks'; // Adjusted to include getIdByLogin function
+import { getIdByLogin } from '../../hooks/hooks';
 import Navbar from "../../components/Navbar";
 
 const Login = () => {
@@ -18,20 +18,17 @@ const Login = () => {
     
         if (login !== '' && password !== '') {
             try {
-                // Próba logowania
-                const response = await getIdByLogin(login, password); // Oczekujemy obiektu z tokenem, clientId i role
+                const response = await getIdByLogin(login, password);
     
                 if (response && response.token) {
-                    // Zapisujemy token i clientId w localStorage
                     localStorage.setItem('token', response.token);
                     localStorage.setItem('clientId', response.clientId);
-                    localStorage.setItem('role', response.role);  // Zapisujemy rolę
+                    localStorage.setItem('role', response.role);
                     
-                    // Przekierowanie na stronę użytkownika lub admina, w zależności od roli
                     if (response.role === 'ADMIN') {
-                        window.location.href = `/admin/${response.clientId}`;  // Przekierowanie na stronę admina
+                        window.location.href = `/admin/${response.clientId}`;
                     } else {
-                        window.location.href = `/user/${response.clientId}`;  // Przekierowanie na stronę użytkownika
+                        window.location.href = `/user/${response.clientId}`;
                     }
                 }
                 

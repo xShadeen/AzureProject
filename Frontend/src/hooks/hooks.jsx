@@ -12,7 +12,7 @@ export const getIdByLogin = async (login, password) => {
     }
 
     const data = await res.json();
-    localStorage.setItem('token', data.token); // Save token to localStorage
+    localStorage.setItem('token', data.token);
     return data;
 };
 
@@ -103,28 +103,26 @@ export const fetchData = async () => {
     return await res.json();
 };
 
-// Funkcja do dodania kursu
 export const addCourse = async (data, clientId) => {
-    const token = localStorage.getItem('token');  // Pobieranie tokenu JWT z lokalnego storage
+    const token = localStorage.getItem('token'); 
 
-    // Wysyłanie zapytania do backendu
     const res = await fetch(`http://localhost:8080/api/courses/add`, {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json',  // Ustawienie typu danych na JSON
-            'Authorization': `Bearer ${token}`,  // Dodanie tokenu JWT do nagłówka
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`,
         },
         body: JSON.stringify({
             ...data,
-            clientId: clientId  // Dodanie clientId do danych
-        }),  // Przesyłamy dane kursu w ciele zapytania
+            clientId: clientId
+        }), 
     });
 
     if (!res.ok) {
-        throw new Error('Failed to add course');  // Obsługa błędu, jeśli zapytanie się nie uda
+        throw new Error('Failed to add course'); 
     }
 
-    // Zwracamy dane odpowiedzi w formacie JSON
+
     return await res.json();
 };
 

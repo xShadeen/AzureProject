@@ -49,8 +49,7 @@ const CourseForm = () => {
             const res = await addCourse(data, clientId);
             console.log('Course added successfully:', res);
 
-            // Przekierowanie po dodaniu kursu
-            window.location.href = `/Course/OwnCourses/${clientId}`;  // Zmieniamy na przekierowanie w JS
+            window.location.href = `/Course/OwnCourses/${clientId}`;
         } catch (error) {
             console.error('Error:', error);
         }

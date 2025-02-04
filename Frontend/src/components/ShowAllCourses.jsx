@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from "react-router-dom";
-import { getCourses, getClientById, deleteCourse } from "../hooks/hooks"; // Importujemy deleteCourse
+import { getCourses, getClientById, deleteCourse } from "../hooks/hooks";
 import { getImageByLanguage } from "../hooks/helpers";
 import Card from "@mui/material/Card";
 import { CardActionArea } from "@mui/material";

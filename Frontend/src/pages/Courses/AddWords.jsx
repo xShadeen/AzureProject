@@ -104,7 +104,7 @@ const AddWords = () => {
                             <Button
                                 variant="contained"
                                 color="success"
-                                sx={{ mt: 2, ml: 2 }} // Dodano margines z lewej strony
+                                sx={{ mt: 2, ml: 2 }}
                                 component={Link}
                                 to={`/Course/OwnCourses/${clientId}`}
                             >

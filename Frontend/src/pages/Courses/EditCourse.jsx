@@ -6,7 +6,7 @@ import UserNavbar from "../../components/UserNavbar";
 const EditCourse = () => {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
-    const [language, setLanguage] = useState('English'); // State to store the selected language
+    const [language, setLanguage] = useState('English');
     const { courseId, clientId } = useParams();
     const maxCharacters = 300;
 

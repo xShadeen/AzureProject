@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useParams, Link } from "react-router-dom";
 import { deleteCourse, getCourseById, getCoursesByClientId, getSavedCoursesByClientId } from "../../hooks/hooks";
-import { getImageByLanguage } from "../../hooks/helpers"; // Importujemy z helpers
+import { getImageByLanguage } from "../../hooks/helpers";
 import Card from "@mui/material/Card";
 import { CardActionArea } from "@mui/material";
 import CardMedia from "@mui/material/CardMedia";
@@ -13,7 +13,7 @@ import UserNavbar from "../../components/UserNavbar";
 const OwnCourses = () => {
     const [savedCourses, setSavedCourses] = useState([]);
     const [ownCourses, setOwnCourses] = useState([]);
-    const { clientId } = useParams(); // Pobieramy clientId z URL
+    const { clientId } = useParams();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -45,7 +45,7 @@ const OwnCourses = () => {
         }
     };
     const calculateProportionalHeight = (width) => {
-        return (width / 345) * 140; // Maintains a 4:3 aspect ratio
+        return (width / 345) * 140;
     };
 
     return (

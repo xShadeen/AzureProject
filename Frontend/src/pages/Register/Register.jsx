@@ -26,15 +26,6 @@ const Register = (props) => {
         }
 
         try {
-            // Check if the login already exists
-            // const loginExists = await getIdByLogin(login);
-
-            // if (loginExists.clientId) {
-            //     setErrorMessage("Login already exists in database.");
-            //     return;
-            // }
-
-            // If login doesn't exist, proceed with registration
             const data = await registerUser(login, password);
             console.log('Registration successful:', data);
             navigate('/Login');
