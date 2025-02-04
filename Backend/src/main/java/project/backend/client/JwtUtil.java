@@ -12,7 +12,6 @@ import java.util.Date;
 @Component
 public class JwtUtil {
 
-    // Przykładowy tajny klucz. Jeśli zmienna środowiskowa jest ustawiona, użyj jej; w przeciwnym razie użyj domyślnego.
     private final String SECRET_KEY = "Jd7b5gX9P6Ltqu9Z59h7m88Uv7fK9Vf3Dd8K67k4D2g=";
 
     public String generateToken(String username, Long clientId, Role role) {

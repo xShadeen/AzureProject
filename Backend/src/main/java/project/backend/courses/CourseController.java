@@ -36,17 +36,15 @@ public class CourseController {
 
     @GetMapping("/{clientId}")
     public ResponseEntity<List<Course>> getCoursesByClientId(@PathVariable Long clientId, Authentication authentication) {
-        // Pobieranie clientId z JWT
+
         JwtAuthenticationToken jwtAuthenticationToken = (JwtAuthenticationToken) authentication;
         Jwt jwt = jwtAuthenticationToken.getToken();
         Long authenticatedClientId = jwt.getClaim("clientId");
         System.out.println(authenticatedClientId);
-        // Sprawdzamy, czy clientId w URL jest zgodne z clientId w JWT
         if (!authenticatedClientId.equals(clientId)) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(Collections.emptyList());
         }
 
-        // Pobieranie kursów
         List<Course> courses = courseService.getCoursesByClientId(clientId);
         return ResponseEntity.ok(courses);
     }
@@ -57,43 +55,35 @@ public class CourseController {
         Jwt jwt = jwtAuthenticationToken.getToken();
         Long authenticatedClientId = jwt.getClaim("clientId");
 
-        // Pobierz użytkownika z bazy danych na podstawie clientId
         Client client = clientService.getClientById(authenticatedClientId);
 
         if (client == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
 
-        // Ustaw klienta dla kursu
         course.setClient(client);
 
-        // Tworzenie i zapisywanie kursu
         Course newCourse = courseService.saveCourse(course);
         return new ResponseEntity<>(newCourse, HttpStatus.CREATED);
     }
 
     @DeleteMapping("/delete/{courseId}")
     public ResponseEntity<?> deleteCourse(@PathVariable Long courseId, Authentication authentication) {
-        // Otrzymujemy token JWT z Authentication
         JwtAuthenticationToken jwtAuthenticationToken = (JwtAuthenticationToken) authentication;
         Jwt jwt = jwtAuthenticationToken.getToken();
 
-        // Odczytujemy clientId i rolę z tokenu
         Long authenticatedClientId = jwt.getClaim("clientId");
-        String roleString = jwt.getClaim("role"); // Pobieramy rolę jako String
+        String roleString = jwt.getClaim("role");
 
-        // Pobieramy kurs z bazy danych
+
         Course course = courseService.getCourseById(courseId);
 
-        // Sprawdzamy, czy użytkownik jest ADMINEM lub właścicielem kursu
         if ("ADMIN".equals(roleString) || course.getClient().getId().equals(authenticatedClientId)) {
-            // Usuwamy kurs
             savedCoursesService.deleteByCourseId(courseId);
             courseService.deleteCourse(courseId);
             return ResponseEntity.ok().build();
         }
 
-        // Jeśli użytkownik nie jest ADMINEM ani właścicielem kursu, zwróć błąd
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body("Access Denied");
     }
 

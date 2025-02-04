@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="c539bd85-4f64-4c6b-b2fb-e3585a43033f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../Frontend/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Frontend/src/components/ShowAllCourses.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/src/components/ShowAllCourses.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Frontend/src/components/UserNavbar.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/src/components/UserNavbar.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Frontend/src/hooks/hooks.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/src/hooks/hooks.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Frontend/src/pages/AdminPanel/AdminPanel.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/src/pages/AdminPanel/AdminPanel.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Frontend/src/pages/Courses/Course.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/src/pages/Courses/Course.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Frontend/src/pages/Courses/CourseForm.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/src/pages/Courses/CourseForm.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Frontend/src/pages/Courses/CourseHomePage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/src/pages/Courses/CourseHomePage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Frontend/src/pages/Courses/OwnCourses.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/src/pages/Courses/OwnCourses.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Frontend/src/pages/Home/Home.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/src/pages/Home/Home.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Frontend/src/pages/Login/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/src/pages/Login/Login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Frontend/src/pages/Register/Register.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/../Frontend/src/pages/Register/Register.jsx" afterDir="false" />
-    </list>
+    <list default="true" id="c539bd85-4f64-4c6b-b2fb-e3585a43033f" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

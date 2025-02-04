@@ -27,13 +27,11 @@ public class ClientController {
         this.passwordEncoder = passwordEncoder;
     }
 
-    // GET - Pobieranie wszystkich klientów
     @GetMapping
     public List<Client> getClients() {
         return clientService.getClients();
     }
 
-    // POST - Rejestracja użytkownika
     @PostMapping("/register")
     public ResponseEntity<Client> addClient(@RequestBody Client client) {
         Client existingClient = clientService.getClientByLogin(client.getLogin());
@@ -41,19 +39,15 @@ public class ClientController {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
 
-        // Przypisanie domyślnej roli "USER"
         client.setRole(Role.USER);
 
-        // Zaszyfrowanie hasła przed zapisaniem do bazy
         client.setPassword(passwordEncoder.encode(client.getPassword()));
 
         Client newClient = clientService.saveClient(client);
 
-        // Zwracamy zarejestrowanego klienta w odpowiedzi
         return new ResponseEntity<>(newClient, HttpStatus.CREATED);
     }
 
-    // GET - Pobieranie klienta po ID
     @GetMapping("/{id}")
     public ResponseEntity<Client> getClientById(@PathVariable Long id) {
         Client client = clientService.getClientById(id);
@@ -69,20 +63,15 @@ public class ClientController {
     public ResponseEntity<?> login(@RequestBody Client client) {
         logger.info("Attempting login for user: {}", client.getLogin());
 
-        // Sprawdź, czy klient istnieje w bazie danych
         Client existingClient = clientService.getClientByLogin(client.getLogin());
 
-        // Jeśli klient nie istnieje lub hasło jest błędne
         if (existingClient == null || !passwordEncoder.matches(client.getPassword(), existingClient.getPassword())) {
             logger.warn("Invalid login attempt for user: {}", client.getLogin());
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid login or password");
         }
-        System.out.println("Client role: " + existingClient.getRole());
 
-        // Generowanie tokenu dla istniejącego klienta (existingClient ma już id)
         String token = jwtUtil.generateToken(existingClient.getLogin(), existingClient.getId(), existingClient.getRole());
 
-        // Tworzenie obiektu odpowiedzi z tokenem, clientId oraz rolą
         LoginResponse loginResponse = new LoginResponse(token, existingClient.getId(), existingClient.getRole());
 
         logger.info("Login successful for user: {}", client.getLogin());
@@ -90,14 +79,13 @@ public class ClientController {
         return ResponseEntity.ok(loginResponse);
     }
 
-    // GET - Weryfikacja tokenu JWT
     @GetMapping("/validate-token")
     public ResponseEntity<String> validateToken(@RequestHeader("Authorization") String authHeader) {
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Token is missing or invalid");
         }
 
-        String token = authHeader.substring(7);  // Usuwamy prefiks "Bearer "
+        String token = authHeader.substring(7);
         if (jwtUtil.validateToken(token)) {
             return ResponseEntity.ok("Token is valid");
         } else {

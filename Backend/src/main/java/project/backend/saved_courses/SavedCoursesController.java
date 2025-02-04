@@ -33,17 +33,15 @@ public class SavedCoursesController {
 
     @GetMapping("/{clientId}")
     public ResponseEntity<List<SavedCourses>> getSavedCoursesByClientId(@PathVariable Long clientId, Authentication authentication) {
-        // Pobieranie clientId z JWT
+
         JwtAuthenticationToken jwtAuthenticationToken = (JwtAuthenticationToken) authentication;
         Jwt jwt = jwtAuthenticationToken.getToken();
         Long authenticatedClientId = jwt.getClaim("clientId");
 
-        // Sprawdzamy, czy clientId w URL jest zgodne z clientId w JWT
         if (!authenticatedClientId.equals(clientId)) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(Collections.emptyList());
         }
 
-        // Pobranie zapisanych kursów
         List<SavedCourses> savedCourses = savedCoursesService.getSavedCoursesByClientId(clientId);
         return ResponseEntity.ok(savedCourses);
     }
@@ -54,24 +52,20 @@ public class SavedCoursesController {
         Jwt jwt = jwtAuthenticationToken.getToken();
         Long authenticatedClientId = jwt.getClaim("clientId");
 
-        // Sprawdzamy, czy ID klienta z JWT pasuje do clientId w URL
         if (!authenticatedClientId.equals(clientId)) {
             return ResponseEntity.status(HttpStatus.FORBIDDEN).body(null);
         }
 
-        // Sprawdzamy, czy klient istnieje
         Client client = clientService.getClientById(clientId);
         if (client == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
 
-        // Sprawdzamy, czy kurs istnieje
         Course course = courseService.getCourseById(courseId);
         if (course == null) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
         }
 
-        // Tworzymy i zapisujemy zapisany kurs
         SavedCourses savedCourses = new SavedCourses(course, client);
         SavedCourses savedCoursesResult = savedCoursesService.save(savedCourses);
 
@@ -84,10 +78,8 @@ public class SavedCoursesController {
         Jwt jwt = jwtAuthenticationToken.getToken();
         Long authenticatedClientId = jwt.getClaim("clientId");
 
-        // Pobierz zapisany kurs
         SavedCourses savedCourse = savedCoursesService.getSavedCourseByCourseId(courseId);
 
-        // Sprawdź, czy kurs należy do zalogowanego użytkownika
         if (!savedCourse.getClient().getId().equals(authenticatedClientId)) {
             throw new AccessDeniedException("You are not authorized to delete this course");
         }

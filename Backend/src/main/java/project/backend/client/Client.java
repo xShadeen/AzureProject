@@ -27,7 +27,7 @@ public class Client {
     private String login;
     private String password;
 
-    @Enumerated(EnumType.STRING)  // Używamy typu enum Role
+    @Enumerated(EnumType.STRING)
     private Role role;
 
     @JsonManagedReference("client_coursesReference")
@@ -39,20 +39,20 @@ public class Client {
     private List<SavedCourses> savedCourses = new ArrayList<>();
 
     public Client() {
-        this.role = Role.USER;  // Domyślnie każdemu nowemu użytkownikowi przypisujemy rolę USER
+        this.role = Role.USER;
     }
 
     public Client(Long id, String login, String password) {
         this.id = id;
         this.login = login;
         this.password = password;
-        this.role = Role.USER;  // Możesz również ustawić domyślną rolę tutaj
+        this.role = Role.USER;
     }
 
     public Client(String login, String password) {
         this.login = login;
         this.password = password;
-        this.role = Role.USER;  // Domyślna rola dla nowych użytkowników
+        this.role = Role.USER;
     }
 
     public Long getId() {
@@ -88,11 +88,11 @@ public class Client {
     }
 
     public Role getRole() {
-        return role;  // Getter dla roli
+        return role;
     }
 
     public void setRole(Role role) {
-        this.role = role;  // Setter dla roli
+        this.role = role;
     }
 
     @Override
@@ -101,7 +101,7 @@ public class Client {
                 "id=" + id +
                 ", login='" + login + '\'' +
                 ", password='" + password + '\'' +
-                ", role=" + role +  // Dodajemy rolę do toString
+                ", role=" + role +
                 '}';
     }
 }

@@ -4,16 +4,14 @@ public class LoginResponse {
 
     private String token;
     private Long clientId;
-    private Role role;  // Dodano pole roli
+    private Role role;
 
-    // Konstruktor
     public LoginResponse(String token, Long clientId, Role role) {
         this.token = token;
         this.clientId = clientId;
-        this.role = role;  // Inicjalizacja roli
+        this.role = role;
     }
 
-    // Gettery i settery
     public String getToken() {
         return token;
     }
