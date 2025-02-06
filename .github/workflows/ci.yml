@@ -67,15 +67,17 @@ jobs:
   #     with:
   #       azcliversion: '2.41.0'  # You can adjust the version as necessary
 
-    # - name: Log in to Azure
-    #   run: |
-    #     echo "${{ secrets.AZURE_CREDENTIALS }}" | az login --service-principal --username $(echo ${{ secrets.AZURE_CLIENT_ID }}) --password $(echo ${{ secrets.AZURE_SECRET }}) --tenant $(echo ${{ secrets.AZURE_TENANT_ID }})
+  # - name: Log in to Azure
+  #   run: |
+  #     echo "${{ secrets.AZURE_CREDENTIALS }}" | az login --service-principal --username $(echo ${{ secrets.AZURE_CLIENT_ID }}) --password $(echo ${{ secrets.AZURE_SECRET }}) --tenant $(echo ${{ secrets.AZURE_TENANT_ID }})
 
-    # - name: Deploy Spring app to Azure
-    #   run: |
-    #     az webapp deploy \
-    #       --resource-group <your-resource-group> \
-    #       --name <your-web-app-name> \
-    #       --src-path ./Backend/target/*.jar \
-    #       --type jar  # Deploy your .jar artifact to Azure Web App
+  # - name: Deploy to production slot
+  #   run: |
+  #     az spring app deploy \
+  #       --name <twoja-aplikacja> \
+  #       --resource-group <twoja-grupa-zasobów> \
+  #       --service <nazwa-usługi-spring> \
+  #       --slot production \
+  #       --artifact-path ./Backend/target/<plik>.jar
+
 
